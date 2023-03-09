@@ -7,6 +7,18 @@ To use this API, you will need to have the following installed:
 - Go 1.18
 - PostgreSQL 10 or later
 
+## Installation
+- Clone the repository:
+- Change directory to the project root
+- Set up the database schema
+
+   `psql -h <database-host> -U <database-user> -f db/schema.sql`
+
+- Update the connection string in `environment.go`
+- Build and run the API `go build`
+- Run the Api `go run .`    
+
+
 ## Usage
 
 ### Ingesting Data
