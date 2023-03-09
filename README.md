@@ -8,7 +8,7 @@ To use this API, you will need to have the following installed:
 - PostgreSQL 10 or later
 
 ## Installation
-- Clone the repository:
+- Clone the repository
 - Change directory to the project root
 - Set up the database schema
 
