@@ -11,13 +11,9 @@ func (t *PostgresDataStore) GetTagsByPartitionKey(partitionKey string) ([]*Tag, 
 												T0."MetaDataKey",
 												T0."MetaDataValue"
 											FROM "Tag" AS T
-											LEFT JOIN "TagMetaData" AS T0 ON (T."PartitionKey" = T0."PartitionKey")
-											AND (T."TagName" = T0."TagName")
+											LEFT JOIN "TagMetaData" AS T0 ON (T."SeriesId" = T0."SeriesId")
 											WHERE T."PartitionKey" = $1
-											ORDER BY T."PartitionKey",
-												T."TagName",
-												T0."PartitionKey",
-												T0."TagName"`, partitionKey)
+											ORDER BY T."SeriesId"`, partitionKey)
 	if err != nil {
 		return nil, err
 	}
@@ -78,13 +74,9 @@ func (t *PostgresDataStore) GetTagByTagKey(tagKey *Key) (*Tag, error) {
 									T0."MetaDataKey",
 									T0."MetaDataValue"
 								FROM "Tag" AS T
-								LEFT JOIN "TagMetaData" AS T0 ON (T."PartitionKey" = T0."PartitionKey")
-								AND (T."TagName" = T0."TagName")
+								LEFT JOIN "TagMetaData" AS T0 ON (T."SeriesId" = T0."SeriesId")
 								WHERE T."PartitionKey" = $1 AND T."TagName" = $2
-								ORDER BY T."PartitionKey",
-									T."TagName",
-									T0."PartitionKey",
-									T0."TagName"`, tagKey.PartitionKey, tagKey.TagName)
+								`, tagKey.PartitionKey, tagKey.TagName)
 	if err != nil {
 		return nil, err
 	}
